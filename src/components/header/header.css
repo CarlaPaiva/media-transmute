@@ -1,0 +1,19 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    display: inline-block;
+    padding: 5px;
+}
+
+.header__logo__title {
+    font-size: 20px;
+    color: whitesmoke;
+}
+
+.header__menu {
+    flex: 1;
+    
+}
