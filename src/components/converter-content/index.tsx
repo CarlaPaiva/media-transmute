@@ -1,11 +1,12 @@
 import { Layout, Tabs, theme } from 'antd';
 import './converter-content.css'
+import VideoConverter from '../video-converter';
 
 const items = [
     {
-        label: 'Video Converter',
+        label: 'Video To GIF',
         key: '1',
-        children: 'Teste'
+        children: <VideoConverter/>
     }
 ]
 
