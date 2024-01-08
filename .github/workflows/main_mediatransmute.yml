@@ -57,6 +57,5 @@ jobs:
         with:
           app-name: 'media-transmute'
           slot-name: 'Production'
-          url: https://victorious-wave-0f7667510.4.azurestaticapps.net
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} 
           package: .
