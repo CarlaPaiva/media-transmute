@@ -43,7 +43,7 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      url: https://victorious-wave-0f7667510.4.azurestaticapps.net
 
     steps:
       - name: Download artifact from build job
