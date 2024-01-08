@@ -1,30 +1,39 @@
-# React + TypeScript + Vite
+# MediaTransmute
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MediaTransmute is a online file converter.
 
-Currently, two official plugins are available:
+## Motivation
+The motivation behind this project was simple: I use a lot media/file converter tools on my daily job. One thing that always use to bother me is that the online existent tools always had some limitation: only a few files per time, daily limit, etc. Paying for a premium subscription of theses tools were not a plan for me, so I decided to use this situation as a change to learn and create my own file converter.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Main Technologies
 
-## Expanding the ESLint configuration
+* Vite (React)
+* ffmpeg core
+* AntDesign
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Running the project
+To be able to run this project you must have an environment with Node and NPM installed. Then, follow those steps:
 
-- Configure the top-level `parserOptions` property like this:
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. Clone the project
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+`git clone https://github.com/CarlaPaiva/media-transmute.git`
+
+3. Go to the project dir
+   
+`cd media-transmute`
+
+5. Install dependencies
+   
+`npm install`
+
+7. Run the project
+   
+`npm run dev`
+
+## Contributing
+This is an open-source project, please, feel free to create a PR and contribute.
+Bug fixes and major changes must have been discussed in a issue before opening a PR.
+
+## License
+This project is licensed under the terms of the MIT license.
