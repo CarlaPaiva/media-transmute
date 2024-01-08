@@ -6,8 +6,6 @@ import ConverterContent from './components/converter-content';
 const { Footer } = Layout;
 
 const App: React.FC = () => {
-
-
   return (
     <Layout>
       <HeaderComponent/>
