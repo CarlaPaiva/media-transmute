@@ -58,4 +58,5 @@ jobs:
           app-name: media-transmute
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZURE_SECRET }} 
+          kudu_app: 'https://victorious-wave-0f7667510.4.azurestaticapps.net'
           package: .
