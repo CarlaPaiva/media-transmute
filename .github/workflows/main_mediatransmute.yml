@@ -53,7 +53,7 @@ jobs:
 
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
-        uses: static-web-apps-deploy@v1
+        uses: Azure/static-web-apps-deploy@v1
         with:
           app-name: media-transmute
           slot-name: 'Production'
