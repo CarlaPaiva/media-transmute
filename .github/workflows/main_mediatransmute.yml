@@ -55,7 +55,7 @@ jobs:
         id: deploy-to-webapp
         uses: Azure/static-web-apps-deploy@v1
         with:
-          app-name: media-transmute
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} 
-          package: .
+          action: 'upload'
+          app_location: 'src/dist'
+          azure_static_web_apps_api_token: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} 
+          skip_app_build: true
