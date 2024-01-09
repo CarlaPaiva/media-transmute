@@ -57,6 +57,5 @@ jobs:
         with:
           action: 'upload'
           app_location: '/'
-          output_location: ''
+          output_location: 'dist'
           azure_static_web_apps_api_token: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} 
-          skip_app_build: true
