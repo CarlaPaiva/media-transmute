@@ -57,5 +57,5 @@ jobs:
         with:
           app-name: media-transmute
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZURE_SECRET }} 
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }} 
           package: .
