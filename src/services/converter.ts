@@ -1,8 +1,9 @@
 import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import { UploadFile } from "antd";
+import { ConvertedFile } from "../model/converted-file";
 
-async function convertFiles(fileList: UploadFile[]): Promise<Blob[]>{
-    const blobList: Blob[] = []
+async function convertFiles(fileList: UploadFile[]): Promise<ConvertedFile[]>{
+    const blobList: ConvertedFile[] = []
 
     for (const file of fileList) {
         const sourceBuffer = await file.originFileObj?.arrayBuffer() as ArrayBuffer
@@ -22,7 +23,12 @@ async function convertFiles(fileList: UploadFile[]): Promise<Blob[]>{
           await ffmpeg.run("-i", file.name, outputName);
 
           const output = ffmpeg.FS("readFile", outputName);
-          blobList.push(new Blob([output.buffer], { type: "image/gif" }))
+          const blob = new Blob([output.buffer], { type: "image/gif" })
+          blobList.push({
+            newFileName: outputName,
+            blob,
+            result: "success"
+          })
     }
 
     return blobList

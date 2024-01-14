@@ -3,8 +3,9 @@ import DraggerUpload from "../dragger-upload"
 import { Button, UploadFile } from "antd"
 import convertFiles from "../../services/converter"
 import { Format } from "../../model/format"
-import './converter.css'
+import { ConvertedFile } from "../../model/converted-file"
 
+import './converter.css'
 /** Properties of Converter */
 type ConverterProps = {
     /** Define allowed types to be uploaded */
@@ -20,14 +21,14 @@ function Converter(props: ConverterProps): JSX.Element {
         setFileList(files)
     }, [])
 
-    const downloadBlob = useCallback((blob: Blob) => {
-        const url = window.URL.createObjectURL(blob);
+    const downloadBlob = useCallback((convertedFile: ConvertedFile) => {
+        const url = window.URL.createObjectURL(convertedFile.blob);
         const a = document.createElement("a")
         document.body.appendChild(a)
         a.style.display = "none"
         a.href = url;
         a.target = "_blank"
-        a.download = 'test.gif';
+        a.download = convertedFile.newFileName;
         a.click();
         window.URL.revokeObjectURL(url);
     }, [])
