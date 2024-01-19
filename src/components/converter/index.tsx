@@ -1,6 +1,6 @@
-import { memo, useCallback, useState } from "react"
+import { memo, useCallback, useMemo, useState } from "react"
 import DraggerUpload from "../dragger-upload"
-import { Button, UploadFile } from "antd"
+import { Button, Input, Select, Steps, UploadFile } from "antd"
 import convertFiles from "../../services/converter"
 import { Format } from "../../model/format"
 import { ConvertedFile } from "../../model/converted-file"
@@ -14,8 +14,19 @@ type ConverterProps = {
     optionsToConvertTo: Format[]
 }
 
+// enum FileStep {
+//     Uploading,
+//     Finished
+// }
+
 function Converter(props: ConverterProps): JSX.Element {
     const [fileList, setFileList] = useState<UploadFile[]>([])
+
+    const options = useMemo(() => {
+        return props.optionsToConvertTo.map((item) => {
+            return { value: item.extension, label: item.name }
+        })
+    }, [props.optionsToConvertTo])
 
     const onUploadDone = useCallback((files: UploadFile[]) => {
         setFileList(files)
@@ -42,14 +53,24 @@ function Converter(props: ConverterProps): JSX.Element {
     }, [downloadBlob, fileList])
 
     return (
-        <div>
+        <div style={{"maxWidth": "700px", "margin": "0 auto"}}>
             <DraggerUpload
                 onUploadDone={onUploadDone} />
-            <Button 
-                size="large" 
-                type="primary" 
-                className="button-convert"
-                onClick={convert}>Convert</Button>
+            <div>
+                <Select
+                    placeholder="Convert all to..."
+                    size="large"
+                    style={{ width: "100%" }}
+                    options={options}
+                >
+                </Select>
+                <Button 
+                    size="large" 
+                    type="primary" 
+                    className="button-convert"
+                    onClick={convert}>Convert</Button>
+            </div>
+            
         </div>
     )
 }
