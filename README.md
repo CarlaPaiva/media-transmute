@@ -3,7 +3,7 @@
 MediaTransmute is a online file converter.
 
 ## Motivation
-The motivation behind this project was simple: I use a lot media/file converter tools on my daily job. One thing that always use to bother me is that the online existent tools always had some limitation: only a few files per time, daily limit, etc. Paying for a premium subscription of theses tools were not a plan for me, so I decided to use this situation as a change to learn and create my own file converter.
+The motivation behind this project was simple: I use a lot media/file converter tools on my daily job. One thing that always use to bother me is that the online existent tools always had some limitation: only a few files per time, daily limit, etc. Paying for a premium subscription for these tools were not a plan for me, so I decided to use this situation as a change to learn and create my own file converter.
 
 ## Main Technologies
 
