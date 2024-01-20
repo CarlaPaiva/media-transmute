@@ -5,6 +5,7 @@ import { Upload } from 'antd';
 import { UploadChangeParam } from 'antd/es/upload';
 
 type DraggerUploadProps = {
+    accept: string
     onUploadDone(file: UploadFile[]): void | Promise<void>
 }
 
@@ -16,6 +17,7 @@ const DraggerUpload = (props: DraggerUploadProps): JSX.Element => {
 
     return (
         <Upload.Dragger
+        accept={props.accept}
         name='file'
         multiple={true}
         

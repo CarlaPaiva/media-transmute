@@ -1,21 +1,22 @@
 import { memo, useCallback, useState } from "react"
-import DraggerUpload from "../dragger-upload"
-import { Button, UploadFile } from "antd"
 import convertFiles from "../../services/converter"
 import { Format } from "../../model/format"
 import { ConvertedFile } from "../../model/converted-file"
-
+import ConverterSteps from "./converter-steps"
+import { UploadFile } from "antd"
 import './converter.css'
 /** Properties of Converter */
 type ConverterProps = {
     /** Define allowed types to be uploaded */
-    allowedUploadingFormats: Format[]
+    allowedUploadingFormats: string[]
     /** Formats available to be converted at */
     optionsToConvertTo: Format[]
 }
 
-function Converter(props: ConverterProps): JSX.Element {
+
+const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.Element {
     const [fileList, setFileList] = useState<UploadFile[]>([])
+    const [convertedFiles, setConvertedFiles ] = useState<ConvertedFile[]>([])
 
     const onUploadDone = useCallback((files: UploadFile[]) => {
         setFileList(files)
@@ -34,25 +35,36 @@ function Converter(props: ConverterProps): JSX.Element {
     }, [])
 
     const convert = useCallback(async () => {
-        const blobs = await convertFiles(fileList)
+        const files = await convertFiles(fileList)
+        setConvertedFiles(files)
+    }, [fileList])
 
-        for (const blob of blobs) {
-            downloadBlob(blob)
-        }
-    }, [downloadBlob, fileList])
+    const downloadFiles = useCallback(() => {
+        convertedFiles.forEach(file => {
+            if (file.result === "error") {
+                return
+            }
+
+            downloadBlob(file)
+        })
+    }, [convertedFiles, downloadBlob])
+
+    const clearStates = useCallback(() => {
+        setFileList([])
+        setConvertedFiles([])
+    }, [])
 
     return (
-        <div>
-            <DraggerUpload
-                onUploadDone={onUploadDone} />
-            <Button 
-                size="large" 
-                type="primary" 
-                className="button-convert"
-                onClick={convert}>Convert</Button>
-        </div>
+        <ConverterSteps 
+            allowedUploadingFormats={props.allowedUploadingFormats}
+            convertedFiles={convertedFiles}
+            extensionOptions={props.optionsToConvertTo}
+            populateFileList={onUploadDone}
+            convert={convert}
+            clearStates={clearStates}
+            downloadFiles={downloadFiles} />
     )
-}
+})
 
 
-export default memo(Converter)
+export default Converter
