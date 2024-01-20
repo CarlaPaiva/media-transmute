@@ -1,12 +1,8 @@
 import { Format } from "../../model/format"
 import Converter from "../converter"
 
-const uploadingFormat: Format[] = [
-    {
-        name: "MP4",
-        extension: ".mp4",
-        mimeType: "video/mp4"
-    }
+const uploadingFormat: string[] = [
+    ".mp4"
 ]
 
 const optionsToConvertTo: Format[] = [
