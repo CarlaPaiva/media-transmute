@@ -6,6 +6,7 @@ import { Format } from "../../model/format"
 import { ConvertedFile } from "../../model/converted-file"
 
 import './converter.css'
+import ConverterSteps from "./converter-steps"
 /** Properties of Converter */
 type ConverterProps = {
     /** Define allowed types to be uploaded */
@@ -19,14 +20,8 @@ type ConverterProps = {
 //     Finished
 // }
 
-function Converter(props: ConverterProps): JSX.Element {
+const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.Element {
     const [fileList, setFileList] = useState<UploadFile[]>([])
-
-    const options = useMemo(() => {
-        return props.optionsToConvertTo.map((item) => {
-            return { value: item.extension, label: item.name }
-        })
-    }, [props.optionsToConvertTo])
 
     const onUploadDone = useCallback((files: UploadFile[]) => {
         setFileList(files)
@@ -53,27 +48,12 @@ function Converter(props: ConverterProps): JSX.Element {
     }, [downloadBlob, fileList])
 
     return (
-        <div style={{"maxWidth": "700px", "margin": "0 auto"}}>
-            <DraggerUpload
-                onUploadDone={onUploadDone} />
-            <div>
-                <Select
-                    placeholder="Convert all to..."
-                    size="large"
-                    style={{ width: "100%" }}
-                    options={options}
-                >
-                </Select>
-                <Button 
-                    size="large" 
-                    type="primary" 
-                    className="button-convert"
-                    onClick={convert}>Convert</Button>
-            </div>
-            
-        </div>
+        <ConverterSteps 
+            extensionOptions={props.optionsToConvertTo}
+            populateFileList={onUploadDone}
+            convert={convert} />
     )
-}
+})
 
 
-export default memo(Converter)
+export default Converter

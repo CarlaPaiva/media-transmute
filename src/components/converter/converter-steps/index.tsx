@@ -1,7 +1,7 @@
-import { useCallback, useState } from "react"
+import { memo, useCallback, useState } from "react"
 import UploadStep from "./upload-step/upload-step"
 import { Format } from "../../../model/format"
-import { UploadFile } from "antd"
+import { Spin, UploadFile } from "antd"
 
 enum Steps {
     Upload = "upload",
@@ -11,21 +11,27 @@ enum Steps {
 type ConverterStepsProps = {
     extensionOptions:Format[]
     populateFileList: (files: UploadFile[]) => void
+    convert: () => Promise<void>
 }
 
-function ConverterSteps(props: ConverterStepsProps): JSX.Element {
+const ConverterSteps = memo(function ConverterStepsComponent(props: ConverterStepsProps): JSX.Element {
     const [ currentStep, setCurrentStep ] = useState<Steps>(Steps.Upload)
+    const [ isConverting, setIsConverting ] = useState(false)
 
-    const onConvertClick = useCallback(() => {
+    const onConvertClick = useCallback(async () => {
+        setIsConverting(true)
+        await props.convert()
+
         setCurrentStep(Steps.Result)
-    }, [])
+        setIsConverting(false)
+    }, [props])
 
     const getUploadStep = useCallback(() => {
         return <UploadStep 
                     extensionOptions={props.extensionOptions}
-                    onConvertClick={props.onConvertClick}
+                    onConvertClick={onConvertClick}
                     populateFileList={props.populateFileList} />
-    }, [props.extensionOptions, props.onConvertClick, props.populateFileList])
+    }, [props.extensionOptions, onConvertClick, props.populateFileList])
 
     const converterSteps = {
         upload:  getUploadStep(),
@@ -34,8 +40,17 @@ function ConverterSteps(props: ConverterStepsProps): JSX.Element {
 
 
     return (
-        converterSteps[currentStep]
+        <>
+            { converterSteps[currentStep] }
+            <Spin 
+                tip="Converting..." 
+                size="large" 
+                spinning={isConverting}
+                fullscreen
+            />
+            
+        </>
     )
-}
+})
 
 export default ConverterSteps
