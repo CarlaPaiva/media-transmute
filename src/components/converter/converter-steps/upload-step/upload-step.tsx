@@ -6,6 +6,7 @@ import { Format } from "../../../../model/format"
 
 type UploadStepProps = {
     extensionOptions:Format[]
+    allowedUploadingFormats: string[]
     populateFileList: (files: UploadFile[]) => void
     onConvertClick: () => void
 }
@@ -41,6 +42,20 @@ const UploadStep = memo(function UploadStepComponent(props: Readonly<UploadStepP
         props.populateFileList(files)
     }, [props])
 
+    const acceptedTypes = useMemo(() => {
+        let types = ''
+
+        props.allowedUploadingFormats.forEach((type, index) => {
+            if (index === props.allowedUploadingFormats.length - 1) {
+                types += type
+            }
+
+            types += type + ", "
+        })
+
+        return types
+    }, [props.allowedUploadingFormats])
+
     const onSelectedFormatChange = useCallback((value: string) => {
         setFormat(value)
     }, [])
@@ -69,6 +84,7 @@ const UploadStep = memo(function UploadStepComponent(props: Readonly<UploadStepP
     return (
         <div className="container">
             <DraggerUpload
+                accept={acceptedTypes}
                 onUploadDone={onUploadDone} />
             <Select
                 value={format}

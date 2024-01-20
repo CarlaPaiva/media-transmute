@@ -1,27 +1,23 @@
-import { memo, useCallback, useMemo, useState } from "react"
-import DraggerUpload from "../dragger-upload"
-import { Button, Input, Select, Steps, UploadFile } from "antd"
+import { memo, useCallback, useState } from "react"
 import convertFiles from "../../services/converter"
 import { Format } from "../../model/format"
 import { ConvertedFile } from "../../model/converted-file"
-
-import './converter.css'
 import ConverterSteps from "./converter-steps"
+import { UploadFile } from "antd"
+import './converter.css'
+
 /** Properties of Converter */
 type ConverterProps = {
     /** Define allowed types to be uploaded */
-    allowedUploadingFormats: Format[]
+    allowedUploadingFormats: string[]
     /** Formats available to be converted at */
     optionsToConvertTo: Format[]
 }
 
-// enum FileStep {
-//     Uploading,
-//     Finished
-// }
 
 const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.Element {
     const [fileList, setFileList] = useState<UploadFile[]>([])
+    const [convertedFiles, setConvertedFiles ] = useState<ConvertedFile[]>([])
 
     const onUploadDone = useCallback((files: UploadFile[]) => {
         setFileList(files)
@@ -40,18 +36,34 @@ const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.E
     }, [])
 
     const convert = useCallback(async () => {
-        const blobs = await convertFiles(fileList)
+        const files = await convertFiles(fileList)
+        setConvertedFiles(files)
+    }, [fileList])
 
-        for (const blob of blobs) {
-            downloadBlob(blob)
-        }
-    }, [downloadBlob, fileList])
+    const downloadFiles = useCallback(() => {
+        convertedFiles.forEach(file => {
+            if (file.result === "error") {
+                return
+            }
+
+            downloadBlob(file)
+        })
+    }, [convertedFiles, downloadBlob])
+
+    const clearStates = useCallback(() => {
+        setFileList([])
+        setConvertedFiles([])
+    }, [])
 
     return (
         <ConverterSteps 
+            allowedUploadingFormats={props.allowedUploadingFormats}
+            convertedFiles={convertedFiles}
             extensionOptions={props.optionsToConvertTo}
             populateFileList={onUploadDone}
-            convert={convert} />
+            convert={convert}
+            clearStates={clearStates}
+            downloadFiles={downloadFiles} />
     )
 })
 
