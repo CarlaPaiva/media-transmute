@@ -8,3 +8,8 @@
     margin-top: 5px;
     width: 100%;
 }
+
+.container__failed-list {
+    color: red;
+    font-weight: bold;
+}

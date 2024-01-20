@@ -49,7 +49,7 @@ const ResultStep = memo(function ResultStepComponent(props: ResultStepProps): JS
                     <List
                     size="small"
                     className="container__items"
-                    header={<div style={{color: "red"}}>Failed to convert these files</div>}
+                    header={<div className="container__failed-list">Failed to convert these files</div>}
                     bordered
                     dataSource={filesWithError}
                     renderItem={(item) => <List.Item>{item.newFileName}</List.Item>}
@@ -64,7 +64,7 @@ const ResultStep = memo(function ResultStepComponent(props: ResultStepProps): JS
                         type="primary" 
                         className="container__items"
                         htmlType="button"
-                        onClick={props.downloadFiles}>Download files...</Button>
+                        onClick={props.downloadFiles}>Download converted files</Button>
                 ) 
             }
             <Button 
