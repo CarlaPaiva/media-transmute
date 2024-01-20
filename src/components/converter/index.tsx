@@ -5,7 +5,6 @@ import { ConvertedFile } from "../../model/converted-file"
 import ConverterSteps from "./converter-steps"
 import { UploadFile } from "antd"
 import './converter.css'
-
 /** Properties of Converter */
 type ConverterProps = {
     /** Define allowed types to be uploaded */
