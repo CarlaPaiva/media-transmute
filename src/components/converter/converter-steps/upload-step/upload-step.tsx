@@ -48,6 +48,7 @@ const UploadStep = memo(function UploadStepComponent(props: Readonly<UploadStepP
         props.allowedUploadingFormats.forEach((type, index) => {
             if (index === props.allowedUploadingFormats.length - 1) {
                 types += type
+                return
             }
 
             types += type + ", "
