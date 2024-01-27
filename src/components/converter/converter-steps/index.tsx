@@ -18,6 +18,7 @@ type ConverterStepsProps = {
     convert: () => Promise<void>
     clearStates: () => void
     downloadFiles: () => void
+    updateSelectedExtension: (extension: string) => void
 }
 
 const ConverterSteps = memo(function ConverterStepsComponent(props: ConverterStepsProps): JSX.Element {
@@ -43,8 +44,9 @@ const ConverterSteps = memo(function ConverterStepsComponent(props: ConverterSte
                     allowedUploadingFormats={props.allowedUploadingFormats}
                     extensionOptions={props.extensionOptions}
                     onConvertClick={onConvertClick}
-                    populateFileList={props.populateFileList} />
-    }, [props.allowedUploadingFormats, props.extensionOptions, props.populateFileList, onConvertClick])
+                    populateFileList={props.populateFileList}
+                    updateSelectedExtension={props.updateSelectedExtension} />
+    }, [props.allowedUploadingFormats, props.extensionOptions, props.populateFileList, props.updateSelectedExtension, onConvertClick])
 
     const getResultStep = useCallback(() => {
         return <ResultStep 

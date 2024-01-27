@@ -4,7 +4,7 @@ import VideoConverter from '../video-converter';
 
 const items = [
     {
-        label: 'Video To GIF',
+        label: 'Video Converter',
         key: '1',
         children: <VideoConverter/>
     }

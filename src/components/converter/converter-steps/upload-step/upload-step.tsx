@@ -9,6 +9,7 @@ type UploadStepProps = {
     allowedUploadingFormats: string[]
     populateFileList: (files: UploadFile[]) => void
     onConvertClick: () => void
+    updateSelectedExtension: (extension: string) => void
 }
 
 type ErrorMessage = {
@@ -59,7 +60,8 @@ const UploadStep = memo(function UploadStepComponent(props: Readonly<UploadStepP
 
     const onSelectedFormatChange = useCallback((value: string) => {
         setFormat(value)
-    }, [])
+        props.updateSelectedExtension(value)
+    }, [props])
     
     const onClick = useCallback(() => {
 

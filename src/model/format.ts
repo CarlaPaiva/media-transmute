@@ -4,6 +4,4 @@ export type Format = {
     name: string
     /** Extension with a dot */
     extension: string
-    /** Mime type of this format, that allow it to be downloaded  */
-    mimeType: string
 }
