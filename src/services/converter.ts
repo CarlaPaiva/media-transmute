@@ -2,14 +2,14 @@ import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import { UploadFile } from "antd";
 import { ConvertedFile } from "../model/converted-file";
 
-async function convertFiles(fileList: UploadFile[]): Promise<ConvertedFile[]>{
+async function convertFiles(fileList: UploadFile[], extension: string): Promise<ConvertedFile[]>{
     const blobList: ConvertedFile[] = []
 
     for (const file of fileList) {
         const sourceBuffer = await file.originFileObj?.arrayBuffer() as ArrayBuffer
         console.log('sourceBuffer', sourceBuffer)
         const nameWithoutExt = file.name.split('.')[0]
-        const outputName = `${nameWithoutExt}.gif`
+        const outputName = `${nameWithoutExt}${extension}`
 
         const ffmpeg = createFFmpeg({ log: true });
         await ffmpeg.load();

@@ -17,7 +17,8 @@ type ConverterProps = {
 const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.Element {
     const [fileList, setFileList] = useState<UploadFile[]>([])
     const [convertedFiles, setConvertedFiles ] = useState<ConvertedFile[]>([])
-
+    const [selectedExtension, setSelectedExtension ] = useState('')
+    
     const onUploadDone = useCallback((files: UploadFile[]) => {
         setFileList(files)
     }, [])
@@ -35,9 +36,9 @@ const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.E
     }, [])
 
     const convert = useCallback(async () => {
-        const files = await convertFiles(fileList)
+        const files = await convertFiles(fileList, selectedExtension)
         setConvertedFiles(files)
-    }, [fileList])
+    }, [fileList, selectedExtension])
 
     const downloadFiles = useCallback(() => {
         convertedFiles.forEach(file => {
@@ -62,7 +63,8 @@ const Converter = memo(function ConverterComponent(props: ConverterProps): JSX.E
             populateFileList={onUploadDone}
             convert={convert}
             clearStates={clearStates}
-            downloadFiles={downloadFiles} />
+            downloadFiles={downloadFiles}
+            updateSelectedExtension={setSelectedExtension} />
     )
 })
 
