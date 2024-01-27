@@ -2,6 +2,14 @@ import { createFFmpeg } from "@ffmpeg/ffmpeg";
 import { UploadFile } from "antd";
 import { ConvertedFile } from "../model/converted-file";
 
+const mimeType = {
+  ".gif": "image/gif",
+  ".mp4": "video/mp4",
+  ".avi": "video/x-msvideo",
+  ".wmv": "video/x-ms-wmv",
+  ".mp3": "audio/mp3",
+}
+
 async function convertFiles(fileList: UploadFile[], extension: string): Promise<ConvertedFile[]>{
     const blobList: ConvertedFile[] = []
 
@@ -23,12 +31,21 @@ async function convertFiles(fileList: UploadFile[], extension: string): Promise<
           await ffmpeg.run("-i", file.name, outputName);
 
           const output = ffmpeg.FS("readFile", outputName);
-          const blob = new Blob([output.buffer], { type: "image/gif" })
-          blobList.push({
-            newFileName: outputName,
-            blob,
-            result: "success"
-          })
+          
+          if (output === null || output.buffer.byteLength <= 0 ) {
+            blobList.push({
+              newFileName: outputName,
+              result: "error",
+              blob: new Blob()
+            })
+          } else {
+            const blob = new Blob([output.buffer], { type: mimeType[extension as keyof typeof mimeType] })
+            blobList.push({
+              newFileName: outputName,
+              blob,
+              result: "success"
+            })
+          }
     }
 
     return blobList

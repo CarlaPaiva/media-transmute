@@ -2,34 +2,31 @@ import { Format } from "../../model/format"
 import Converter from "../converter"
 
 const uploadingFormat: string[] = [
-    ".mp4"
+    "video/mp4",
+    "video/x-m4v",
+    "video/*"
 ]
 
 const optionsToConvertTo: Format[] = [
     {
         name: "GIF",
-        extension: ".gif",
-        mimeType: "image/gif"
+        extension: ".gif"
     },
     {
         name: "MP4",
-        extension: ".mp4",
-        mimeType: "video/mp4"
+        extension: ".mp4"
     },
     {
         name: "AVI",
-        extension: ".avi",
-        mimeType: "video/x-msvideo"
+        extension: ".avi"
     },
     {
         name: "WMV",
-        extension: ".wmv",
-        mimeType: "video/x-ms-asf"
+        extension: ".wmv"
     },
     {
         name: "MP3",
-        extension: ".mp3",
-        mimeType: "audio/mp4"
+        extension: ".mp3"
     }
 ]
 
