@@ -73,8 +73,15 @@ const UploadStep = memo(function UploadStepComponent(
 
   const onSelectedFormatChange = useCallback(
     (value: (string | number)[]) => {
-      setFormat(value[1] as string)
-      props.updateSelectedExtension(value[1] as string)
+      const result = value[1] as string
+
+      if (!result) {
+        console.warn('Could not read selected format.')
+        return
+      }
+
+      setFormat(result)
+      props.updateSelectedExtension(result)
     },
     [props],
   )
