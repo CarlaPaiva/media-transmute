@@ -7,22 +7,27 @@ const optionsToConvertTo: Format[] = [
   {
     name: 'GIF',
     extension: '.gif',
+    category: 'Image',
   },
   {
     name: 'MP4',
     extension: '.mp4',
+    category: 'Video',
   },
   {
     name: 'AVI',
     extension: '.avi',
+    category: 'Video',
   },
   {
     name: 'WMV',
     extension: '.wmv',
+    category: 'Video',
   },
   {
     name: 'MP3',
     extension: '.mp3',
+    category: 'Audio',
   },
 ]
 

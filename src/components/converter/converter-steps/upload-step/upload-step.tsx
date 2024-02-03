@@ -1,4 +1,5 @@
-import { Alert, Button, Select, UploadFile } from 'antd'
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Alert, Button, Cascader, UploadFile } from 'antd'
 import DraggerUpload from '../../../dragger-upload'
 import './upload-step.css'
 import { memo, useCallback, useMemo, useState } from 'react'
@@ -15,6 +16,12 @@ type UploadStepProps = {
 type ErrorMessage = {
   isVisible: boolean
   message: string
+}
+
+type Option = {
+  value: string
+  label: string
+  children?: Option[]
 }
 
 const hideErrorMessage: ErrorMessage = {
@@ -65,9 +72,9 @@ const UploadStep = memo(function UploadStepComponent(
   }, [props.allowedUploadingFormats])
 
   const onSelectedFormatChange = useCallback(
-    (value: string) => {
-      setFormat(value)
-      props.updateSelectedExtension(value)
+    (value: (string | number)[]) => {
+      setFormat(value[1] as string)
+      props.updateSelectedExtension(value[1] as string)
     },
     [props],
   )
@@ -87,22 +94,39 @@ const UploadStep = memo(function UploadStepComponent(
   }, [files.length, format, props])
 
   const options = useMemo(() => {
-    return props.extensionOptions.map((item) => {
-      return { value: item.extension, label: item.name }
+    const opts: Option[] = []
+
+    props.extensionOptions.forEach((item) => {
+      if (opts.some((x) => x.label === item.category)) {
+        return
+      }
+
+      const children = props.extensionOptions.filter(
+        (value) => value.category === item.category,
+      )
+
+      opts.push({
+        label: item.category,
+        value: item.category,
+        children: children.map((cItem) => {
+          return { value: cItem.extension, label: cItem.name, children: [] }
+        }),
+      })
     })
+
+    return opts
   }, [props.extensionOptions])
 
   return (
     <div className="container">
       <DraggerUpload accept={acceptedTypes} onUploadDone={onUploadDone} />
-      <Select
-        value={format}
-        placeholder="Convert all to..."
-        size="large"
+      <Cascader
         className="container__items"
-        onChange={onSelectedFormatChange}
+        size="large"
+        placeholder="Convert all to..."
         options={options}
-      ></Select>
+        onChange={onSelectedFormatChange}
+      />
       <Button
         size="large"
         type="primary"
