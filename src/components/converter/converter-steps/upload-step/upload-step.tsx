@@ -132,6 +132,7 @@ const UploadStep = memo(function UploadStepComponent(
         size="large"
         placeholder="Convert all to..."
         options={options}
+        dropdownStyle={{ minWidth: '700px' }}
         onChange={onSelectedFormatChange}
       />
       <Button
