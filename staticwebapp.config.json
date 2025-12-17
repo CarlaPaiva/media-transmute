@@ -2,12 +2,5 @@
     "globalHeaders": {
         "Cross-Origin-Embedder-Policy": "require-corp",
         "Cross-Origin-Opener-Policy": "same-origin"
-    },
-    "routes": [
-    {
-      "route": "/*",
-      "redirect": "https://mediatransmute.carlapaiva.com/",
-      "statusCode": 301
     }
-  ]
 }
