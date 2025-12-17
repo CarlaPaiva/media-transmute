@@ -13,7 +13,7 @@ const App: React.FC = () => {
       <Footer style={{ textAlign: 'center' }}>
         MediaTransmute ©{new Date().getFullYear()} Created by{' '}
         <a
-          href="https://github.com/CarlaPaiva"
+          href="https://www.carlapaiva.com/"
           target="_blank"
           rel="noreferrer"
         >
