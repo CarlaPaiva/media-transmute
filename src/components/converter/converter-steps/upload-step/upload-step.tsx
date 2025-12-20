@@ -126,11 +126,14 @@ const UploadStep = memo(function UploadStepComponent(
 
   return (
     <div className="container">
+      <p className="container__helper">
+        Upload a video or audio file to convert it to another format.
+      </p>
       <DraggerUpload accept={acceptedTypes} onUploadDone={onUploadDone} />
       <Cascader
         className="container__items"
         size="large"
-        placeholder="Convert all to..."
+        placeholder="Convert files to..."
         options={options}
         dropdownStyle={{ minWidth: '700px' }}
         onChange={onSelectedFormatChange}
@@ -144,6 +147,13 @@ const UploadStep = memo(function UploadStepComponent(
       >
         Convert
       </Button>
+      <p className="container__helper">
+        All conversions happen locally in your browser. Files are never uploaded
+        to a server.
+      </p>
+      <p className="container__helper">
+        No account required. No tracking of uploaded files.
+      </p>
 
       {isErrorMessageVisible?.isVisible && (
         <Alert
