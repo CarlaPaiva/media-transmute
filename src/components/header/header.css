@@ -1,19 +1,26 @@
 .header {
     display: flex;
-    align-items: center;
 }
 
 .header__logo {
     display: inline-block;
-    padding: 5px;
 }
 
 .header__logo__title {
     font-size: 20px;
     color: whitesmoke;
+    line-height: 20px;
+    margin-bottom: 3px;
+}
+
+.header__logo__tagline {
+    font-size: 15px;
+    line-height: 15px;
+    margin-top: 0;
+    line-height: normal;
+    color: whitesmoke;
 }
 
 .header__menu {
     flex: 1;
-    
 }

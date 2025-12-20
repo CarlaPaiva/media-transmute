@@ -8,3 +8,9 @@
     margin-top: 5px;
     width: 100%;
 }
+
+.container__helper {
+    text-align: center;
+    margin: 3px;
+    font-size: small;
+}

@@ -12,11 +12,7 @@ const App: React.FC = () => {
       <ConverterContent />
       <Footer style={{ textAlign: 'center' }}>
         MediaTransmute ©{new Date().getFullYear()} Created by{' '}
-        <a
-          href="https://www.carlapaiva.com/"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href="https://www.carlapaiva.com/" target="_blank" rel="noreferrer">
           Carla Paiva
         </a>
       </Footer>
