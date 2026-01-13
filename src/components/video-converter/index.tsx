@@ -29,6 +29,11 @@ const optionsToConvertTo: Format[] = [
     extension: '.mp3',
     category: 'Audio',
   },
+  {
+    name: 'WAV',
+    extension: '.wav',
+    category: 'Audio',
+  },
 ]
 
 function VideoConverter(): JSX.Element {

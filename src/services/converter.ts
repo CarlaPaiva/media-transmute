@@ -8,6 +8,7 @@ const mimeType = {
   '.avi': 'video/x-msvideo',
   '.wmv': 'video/x-ms-wmv',
   '.mp3': 'audio/mp3',
+  '.wav': 'audio/wav',
 }
 
 async function convertFiles(
