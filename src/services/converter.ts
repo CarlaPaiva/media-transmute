@@ -8,6 +8,12 @@ const mimeType = {
   '.avi': 'video/x-msvideo',
   '.wmv': 'video/x-ms-wmv',
   '.mp3': 'audio/mp3',
+  '.wav': 'audio/wav',
+  '.m4a': 'audio/mp4',
+  '.wma': 'audio/wma',
+  '.ogg': 'audio/ogg',
+  '.aac': 'audio/aac',
+  '.flac': 'audio/flac',
 }
 
 async function convertFiles(

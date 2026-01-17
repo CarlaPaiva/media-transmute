@@ -29,6 +29,41 @@ const optionsToConvertTo: Format[] = [
     extension: '.mp3',
     category: 'Audio',
   },
+  {
+    name: 'WAV',
+    extension: '.wav',
+    category: 'Audio',
+  },
+  {
+    name: 'M4A',
+    extension: '.m4a',
+    category: 'Audio',
+  },
+  {
+    name: 'WMA',
+    extension: '.wma',
+    category: 'Audio',
+  },
+  {
+    name: 'OGG',
+    extension: '.ogg',
+    category: 'Audio',
+  },
+  {
+    name: 'MP2',
+    extension: '.mp2',
+    category: 'Audio',
+  },
+  {
+    name: 'AAC',
+    extension: '.aac',
+    category: 'Audio',
+  },
+  {
+    name: 'FLAC',
+    extension: '.flac',
+    category: 'Audio',
+  },
 ]
 
 function VideoConverter(): JSX.Element {
