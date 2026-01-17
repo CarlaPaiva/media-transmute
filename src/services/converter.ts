@@ -12,6 +12,8 @@ const mimeType = {
   '.m4a': 'audio/mp4',
   '.wma': 'audio/wma',
   '.ogg': 'audio/ogg',
+  '.aac': 'audio/aac',
+  '.flac': 'audio/flac',
 }
 
 async function convertFiles(

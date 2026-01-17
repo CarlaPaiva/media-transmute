@@ -49,6 +49,21 @@ const optionsToConvertTo: Format[] = [
     extension: '.ogg',
     category: 'Audio',
   },
+  {
+    name: 'MP2',
+    extension: '.mp2',
+    category: 'Audio',
+  },
+  {
+    name: 'AAC',
+    extension: '.aac',
+    category: 'Audio',
+  },
+  {
+    name: 'FLAC',
+    extension: '.flac',
+    category: 'Audio',
+  },
 ]
 
 function VideoConverter(): JSX.Element {
