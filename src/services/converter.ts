@@ -9,6 +9,9 @@ const mimeType = {
   '.wmv': 'video/x-ms-wmv',
   '.mp3': 'audio/mp3',
   '.wav': 'audio/wav',
+  '.m4a': 'audio/mp4',
+  '.wma': 'audio/wma',
+  '.ogg': 'audio/ogg',
 }
 
 async function convertFiles(

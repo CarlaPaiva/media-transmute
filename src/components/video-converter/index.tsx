@@ -34,6 +34,21 @@ const optionsToConvertTo: Format[] = [
     extension: '.wav',
     category: 'Audio',
   },
+  {
+    name: 'M4A',
+    extension: '.m4a',
+    category: 'Audio',
+  },
+  {
+    name: 'WMA',
+    extension: '.wma',
+    category: 'Audio',
+  },
+  {
+    name: 'OGG',
+    extension: '.ogg',
+    category: 'Audio',
+  },
 ]
 
 function VideoConverter(): JSX.Element {
