@@ -26,7 +26,8 @@ async function convertFiles(
     const sourceBuffer =
       (await file.originFileObj?.arrayBuffer()) as ArrayBuffer
     console.log('sourceBuffer', sourceBuffer)
-    const nameWithoutExt = file.name.split('.')[0]
+    const clearName = file.name.replace(/[^a-zA-Z0-9 ]/g, "")
+    const nameWithoutExt = clearName.split('.')[0]
     const outputName = `${nameWithoutExt}${extension}`
 
     const ffmpeg = createFFmpeg({ log: true })
@@ -34,11 +35,11 @@ async function convertFiles(
 
     ffmpeg.FS(
       'writeFile',
-      file.name,
+      clearName,
       new Uint8Array(sourceBuffer, 0, sourceBuffer.byteLength),
     )
 
-    await ffmpeg.run('-i', file.name, outputName)
+    await ffmpeg.run('-i', clearName, outputName)
 
     const output = ffmpeg.FS('readFile', outputName)
 
